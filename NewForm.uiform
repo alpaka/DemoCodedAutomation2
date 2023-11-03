@@ -1,0 +1,52 @@
+﻿{
+  "Metadata": {
+    "Id": "52cb68b8-43cc-4ff4-8500-baf39bad449c",
+    "Kind": "FormIo"
+  },
+  "DesignProperties": {
+    "Title": "NewForm",
+    "Theme": "Default",
+    "ShowInTaskbar": true,
+    "ShowMargin": true,
+    "CustomStyle": ""
+  },
+  "Data": {
+    "components": [
+      {
+        "label": "Finobacci",
+        "tableView": true,
+        "key": "textField",
+        "type": "textfield",
+        "input": true,
+        "defaultValue": "0"
+      },
+      {
+        "label": "Ergebnis",
+        "disabled": true,
+        "tableView": true,
+        "key": "ergebnis",
+        "type": "textfield",
+        "input": true
+      },
+      {
+        "label": "Berechnen",
+        "action": "event",
+        "showValidations": false,
+        "tableView": false,
+        "key": "berechnen",
+        "type": "button",
+        "input": true
+      },
+      {
+        "label": "Close",
+        "action": "event",
+        "showValidations": false,
+        "disableOnInvalid": true,
+        "tableView": false,
+        "key": "submit",
+        "type": "button",
+        "input": true
+      }
+    ]
+  }
+}
