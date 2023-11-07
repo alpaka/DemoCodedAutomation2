@@ -3,7 +3,7 @@
     <x:Property Name="TriggerEventArgs" Type="InArgument(ufa:FormInfoTriggerEventArgs)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>914,868.6666666666666</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>914,1052</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -76,9 +76,18 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
       <AssemblyReference>CodedAutomation2.Core</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CalculateFibonacci" sap:VirtualizedContainerService.HintSize="450,804" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CalculateFibonacci" sap:VirtualizedContainerService.HintSize="450,987.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="n" />
       <Variable x:TypeArguments="x:Int32" Name="fibo" />
@@ -89,7 +98,14 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ufa:FormTriggerActivity x:TypeArguments="ufa:FormInfoTriggerEventArgs" MessageId="{x:Null}" Tag="{x:Null}" DisplayName="Form Event Trigger" Enabled="True" Event="click.berechnen" FormId="52cb68b8-43cc-4ff4-8500-baf39bad449c" sap:VirtualizedContainerService.HintSize="388,167.33333333333334" sap2010:WorkflowViewState.IdRef="FormTriggerActivity`1_1" SchedulingMode="Sequential" TriggerId="dfc65fe7-b69f-4c85-899c-169a7a23f943" />
+    <ufa:FormTriggerActivity x:TypeArguments="ufa:FormInfoTriggerEventArgs" MessageId="{x:Null}" Tag="{x:Null}" DisplayName="Form Event Trigger" Enabled="True" Event="click.berechnen" FormId="52cb68b8-43cc-4ff4-8500-baf39bad449c" sap:VirtualizedContainerService.HintSize="388,166" sap2010:WorkflowViewState.IdRef="FormTriggerActivity`1_1" SchedulingMode="Sequential" TriggerId="dfc65fe7-b69f-4c85-899c-169a7a23f943" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1">
+      <ui:LogMessage.Message>
+        <InArgument x:TypeArguments="x:Object">
+          <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">"textfield: " + GlobalVariables.textField</CSharpValue>
+        </InArgument>
+      </ui:LogMessage.Message>
+    </ui:LogMessage>
     <ufa:GetFormFieldsActivity InstanceName="{x:Null}" DisplayName="Get Form Values" FormId="52cb68b8-43cc-4ff4-8500-baf39bad449c" sap:VirtualizedContainerService.HintSize="388,145.33333333333334" sap2010:WorkflowViewState.IdRef="GetFormFieldsActivity_1">
       <ufa:GetFormFieldsActivity.Arguments>
         <OutArgument x:TypeArguments="x:Int32" x:Key="textField">
