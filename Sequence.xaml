@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Sequence" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="914,804" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Sequence" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="914,1692" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.Collections;assembly=System.Private.CoreLib" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:uuam="clr-namespace:UiPath.UIAutomationNext.Activities.Models;assembly=UiPath.UIAutomationNext.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -38,6 +38,9 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>CodedAutomation2</x:String>
       <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -103,54 +106,125 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="546,706.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="672.6666666666666,1627.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="chldrn" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: Google" sap:VirtualizedContainerService.HintSize="484,596" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="5843f396-29bf-433a-93dd-2ff89d02d5ea" Version="V2">
-      <uix:NApplicationCard.Body>
-        <ActivityAction x:TypeArguments="x:Object">
+    <ui:FindChildren DisplayName="Find Children 'DIV'" Filter="&lt;webctrl innertext='*td*' tag='SPAN' aria-role='presentation' /&gt;" sap:VirtualizedContainerService.HintSize="610.6666666666666,107.33333333333333" sap2010:WorkflowViewState.IdRef="FindChildren_2" Scope="FIND_DESCENDANTS">
+      <ui:FindChildren.Children>
+        <OutArgument x:TypeArguments="scg:IEnumerable(ui:UiElement)">
+          <CSharpReference x:TypeArguments="scg:IEnumerable(ui:UiElement)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">chldrn</CSharpReference>
+        </OutArgument>
+      </ui:FindChildren.Children>
+      <ui:FindChildren.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2c83864d-130c-43a2-b579-423ed173092f" InformativeScreenshot="dc24909da89b341d1930c040cb4f36fe" Selector="&lt;html app='chrome.exe' title='generatedata.com' /&gt;&lt;webctrl aria-role='presentation' tag='DIV' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:FindChildren.Target>
+    </ui:FindChildren>
+    <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="610.6666666666666,422" sap2010:WorkflowViewState.IdRef="ForEach`1_1">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="ui:UiElement">
           <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            <DelegateInArgument x:TypeArguments="ui:UiElement" Name="currentItem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,376.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="searchTerm" />
-            </Sequence.Variables>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,232" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'TEXTAREA APjFqb'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,260.6666666666667" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="5843f396-29bf-433a-93dd-2ff89d02d5ea" Version="V3">
-              <uix:NTypeInto.Target>
-                <uix:TargetAnchorable BrowserURL="https://www.google.com/" CvElementArea="770, 688, 879, 74" CvType="InputBox" DesignTimeRectangle="845, 708, 666, 41" DesignTimeScaleFactor="1.5" ElementType="InputBox" FriendlyName="'TEXTAREA APjFqb'" FullSelectorArgument="&lt;webctrl id='APjFqb' tag='TEXTAREA' /&gt;" FuzzySelectorArgument="&lt;webctrl id='APjFqb' tag='TEXTAREA' type='search' class='gLFyf' aaname='Search' /&gt;" Guid="55e922e8-cf62-4a23-827e-d10b21983840" InformativeScreenshot="2e1303e0734af12a1c1b976dc56e8c4a.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Google' /&gt;" SearchSteps="FuzzySelector, CV" Version="V2" Visibility="Interactive" />
-              </uix:NTypeInto.Target>
-              <uix:NTypeInto.Text>
-                <InArgument x:TypeArguments="x:String">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">searchTerm</CSharpValue>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2">
+              <ui:LogMessage.Message>
+                <InArgument x:TypeArguments="x:Object">
+                  <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">currentItem.Selector</CSharpValue>
                 </InArgument>
-              </uix:NTypeInto.Text>
-              <uix:NTypeInto.VerifyOptions>
-                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                  <uix:VerifyExecutionTypeIntoOptions.Retry>
-                    <InArgument x:TypeArguments="x:Boolean" />
-                  </uix:VerifyExecutionTypeIntoOptions.Retry>
-                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                    <InArgument x:TypeArguments="x:Double" />
-                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                </uix:VerifyExecutionTypeIntoOptions>
-              </uix:NTypeInto.VerifyOptions>
-            </uix:NTypeInto>
+              </ui:LogMessage.Message>
+            </ui:LogMessage>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <ui:ForEach.Values>
+        <InArgument x:TypeArguments="sc:IEnumerable">
+          <CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">chldrn</CSharpValue>
+        </InArgument>
+      </ui:ForEach.Values>
+    </ui:ForEach>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: generatedata.com" sap:VirtualizedContainerService.HintSize="610.6666666666666,907.3333333333334" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="1caf5420-fc5e-4f9d-bbea-49055694de59" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="576.6666666666666,688" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NForEachUiElement DisplayName="For Each UI Element" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='CurrentElement' ReferenceName='Column0'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Column0' attr='fulltext'&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='pre' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="514.6666666666666,572" sap2010:WorkflowViewState.IdRef="NForEachUiElement_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="1caf5420-fc5e-4f9d-bbea-49055694de59" Version="V3">
+              <uix:NForEachUiElement.Body>
+                <ActivityAction x:TypeArguments="x:Int32">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,263.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,147.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1">
+                      <ui:LogMessage.Message>
+                        <InArgument x:TypeArguments="x:Object">
+                          <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">CurrentElement.Selector</CSharpValue>
+                        </InArgument>
+                      </ui:LogMessage.Message>
+                    </ui:LogMessage>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NForEachUiElement.Body>
+              <uix:NForEachUiElement.Filter>
+                <uuam:FilterArgument LogicalOperator="And">
+                  <uuam:FilterArgument.Filters>
+                    <scg:List x:TypeArguments="uuam:FilterEntryArgument" Capacity="1">
+                      <uuam:FilterEntryArgument Criterion="Column0" Operator="Contains" Value="td" />
+                    </scg:List>
+                  </uuam:FilterArgument.Filters>
+                </uuam:FilterArgument>
+              </uix:NForEachUiElement.Filter>
+              <uix:NForEachUiElement.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="55, 922, 2302, 570" DesignTimeScaleFactor="1.5" FriendlyName="'1&lt;table&gt;2 &lt;tr&gt;3'" FullSelectorArgument="&lt;webctrl aria-role='presentation' class='CodeMirror-code' tag='DIV' /&gt;" Guid="578f065e-d297-452e-9d1e-76e1317d1cbe" InformativeScreenshot="63a8e31f51304229e8c6b27570052b11.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='generatedata.com' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+              </uix:NForEachUiElement.Target>
+              <uix:NForEachUiElement.Variables>
+                <Variable x:TypeArguments="ui:UiElement" Name="CurrentElement" />
+                <Variable x:TypeArguments="x:String" Name="CurrentElement_Label" />
+              </uix:NForEachUiElement.Variables>
+              <uix:NForEachUiElement.VariablesMetadata>
+                <scg:List x:TypeArguments="uuam:VariableMetadata" x:Key="Column0" Capacity="4">
+                  <uuam:VariableMetadata Name="CurrentElement" Type="ui:UiElement" />
+                  <uuam:VariableMetadata Name="CurrentElement_Label" Type="x:String" />
+                </scg:List>
+              </uix:NForEachUiElement.VariablesMetadata>
+            </uix:NForEachUiElement>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-11, -11, 2422, 1550" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAARHSURBVFhHvZddbBRVFMf7YrAq+OSbD6Kgb0qUUh60xq9VtA8k1EJrH1CsGIM+GLUmBA0kFi0WSMCHLcVCTMO2GmjFCiUFpH60sUjMEtIGLaAWama32w92dt2vOf7PndPd3M7sdmobf8k/M/fec8//zJ07s7NFXrEsawlUnclkmqEBaAxKisLS14yYKo6VafMHyR5A4hYoTh5BbAw6iLnLJc3cQZ7bkKQRSttp5w7mpqBdKKRY0noDE+7HxEuSZ94gVxA5l0n6wiDwYUwIyVyN9I0RMls/p4l33qDwi8+R4VtNxjOlFF7no/G3XyfzcBOlR/6UaB3kNHBYITbuyJU7zNOj12ly+/tkPL2KjKdKCgsxkx++p+bMhIvIuxIYuB0BjmWPn+qi0Atl7mYFFCp/nP45e0qy5IAH3w7nnsBAo8RkMY8cck3uVVMN2yWTDrwaxNYGFfGjpu12vnK3pKxIbRVFD+yj+DdHKd51DOf7KfJatRYztbueyLIkmw68UtqtQEeLjCl4s4Wef0xLyBqrWUuJ8/0S5SQx0EfhDeV0c/+n0pMfeDYrc5zfiYb2konufdNhPr7lZbKmpiQiP5YZlbPCwNPEKizm5a+WPoUVG6ZU9yKarLsna86PXGYiIhELB7zX8/I3S1uRuVpPqZ5blMx9d1FozUqKnzwuowsLvP1cwIC0FelffNkCWImjS4lSKRldWODdzwWMSVuR6r1bKyB9sUpG3Hnyo6hnnb2kXwi8DS4gKW1F6vQirYDM79tkxB03o3xq/VGz4gIS/2sBLecSMstmuoCwtBWOWxDcICPuuBnlU3u/YwXULdA34YVntQJGeh+kZGbum/CKkXEUcG7QsQfUJpzxGH6cNT/etZQeDayljuEeGfVOoC/pKGB0Qn81w9vPLyJtm1uxqxTrKab6jkdoZWCdkq/jFQrHxyVidm7GLarYa2rmG/0xGc0B70ouYAkq0Ub39O3Imk+rpvtdmkjM/ipO4iet7khcM2e1Oe+/icMd6vcAjYN2t82NqEFlX73kKKL8683Ue/28RDm5PH6NNnUGYDipmfNqxBKO5W9S5gxWYTk6tB1y4lqvo4BpVXz7FjVeaKH2yyfoy99O0mfBVnq1ZyuVBCrUeOmhOnrik7+yBXw/pH/XwisJz/vE3gadu2Q8yxdDnQ5zrypp3Uhlu392PPsMvHaKbQ7082f4RTskR/cfP+B21LiaFFJpWyUdCHZKlhzw+BWHW8VWB8uyDAH89aoxaoZo6097aFWbvcSzafOZD2gwMiyzcyD33zjcK3buIGCFWxEMb87Dg8doy3c7aE1nLa1ur1RX6uvYRLWnt6m9MBS5ItE6bI4LfEhsCiMrEZS58wa5eNkLX/lMUEQxJjZA//ljAHP5j+tOnLrfcy/IavA/Yn5xeIJjoSbM1R+1+YBki6H1SOyH+iEDSoj4nPv8iKlEDfYbblaKiv4FoeF/NqqvoEMAAAAASUVORK5CYII=" InformativeScreenshot="af21f087054abb14eaf0378d37dad659.jpg" Selector="&lt;html app='chrome.exe' title='Google' /&gt;" Title="Google" Url="https://www.google.com/" />
+        <uix:TargetApp Area="-11, -11, 2422, 1550" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="7221b509216e31c2e01f072681e258ce.jpg" Selector="&lt;html app='chrome.exe' title='generatedata.com' /&gt;" Title="generatedata.com" Url="https://generatedata.com/generator" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
   </Sequence>
